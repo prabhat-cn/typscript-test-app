@@ -1,4 +1,5 @@
 class Vehicle {
+  color: string = 'red';
   public drive(): void {
     console.log('Hello Class Drive!!');
   }
@@ -7,6 +8,23 @@ class Vehicle {
   }
   protected junk(): void {
     console.log('Class junk!!');
+  }
+}
+
+class BigVehicle {
+  color: string = 'red';
+  // size: string;
+  constructor(public size: string) {
+    this.size = size;
+  }
+}
+
+const bigvehicle = new BigVehicle('BIG');
+console.log('bigvehicle.aize->', bigvehicle.size);
+
+class BigCar extends BigVehicle {
+  constructor(public wheel: number, color: string) {
+    super(color);
   }
 }
 
@@ -24,11 +42,13 @@ class Car extends Vehicle {
   }
 }
 
-// const vehicle = new Vehicle();
+const vehicle = new Vehicle();
+console.log('vehicle.color->', vehicle.color);
 // vehicle.drive();
 // vehicle.hunk();
 
 const car = new Car();
+console.log('car.color->', car.color);
 car.drive();
 car.hunk();
 // car.junk(); // Because it is protected

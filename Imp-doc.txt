@@ -1,0 +1,22 @@
+Important Note About Google Maps Key
+The next video shows how to hook up Google Maps by generating an API key on the Google Developer's Console.  Creating an API key requires a Google Developer account with billing enabled.  This means you have to have a credit card tied to your Google account.
+
+If you do not have a credit card tied to your Google account, or do not want to add one, then please use this pre-generated API key instead:
+
+udemy-API ---- AIzaSyBNLrJhOMz6idD05pzfn5lhA-TAw-mAZCU
+
+You can skip the entire next video.  After the next video, your index.html file should look like this:
+
+<html>
+  <body>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNLrJhOMz6idD05pzfn5lhA-TAw-mAZCU"></script>
+    <script src="./src/index.ts"></script>
+  </body>
+</html>
+
+
+https://console.cloud.google.com/apis/dashboard?pli=1
+   video--375 map api details
+
+   my api google map--
+   AIzaSyCuflGo7JmoZVgwNrsjqw7GaXpnwix14Pc
