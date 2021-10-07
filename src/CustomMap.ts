@@ -16,7 +16,15 @@ export class CustomMap {
 
   // methods
 
-  addUsermarker(user: User): void {}
+  addUsermarker(user: User): void {
+    new google.maps.Marker({
+      map: this.googleMap,
+      position: {
+        lat: user.location.lat,
+        lng: user.location.lng,
+      },
+    });
+  }
 
   addCompanymarker(company: Company): void {}
 }

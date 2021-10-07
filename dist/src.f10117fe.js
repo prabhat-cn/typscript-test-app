@@ -136903,65 +136903,62 @@ function () {
 }();
 
 exports.User = User;
-},{"faker":"node_modules/faker/index.js"}],"src/company.ts":[function(require,module,exports) {
+},{"faker":"node_modules/faker/index.js"}],"src/CustomMap.ts":[function(require,module,exports) {
 "use strict";
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Company = exports.red = void 0;
+exports.CustomMap = void 0;
 
-var faker_1 = __importDefault(require("faker"));
-
-exports.red = 'red';
-exports.default = 'green';
-
-var Company =
+var CustomMap =
 /** @class */
 function () {
-  function Company() {
-    this.companyName = faker_1.default.company.companyName();
-    this.catchPhrase = faker_1.default.company.catchPhrase(); // console.log(this.location);
+  function CustomMap(divId) {
+    this.googleMap = new google.maps.Map(document.getElementById('map'), {
+      zoom: 1,
+      center: {
+        lat: 0,
+        lng: 0
+      }
+    });
+  } // methods
 
-    this.location = {
-      lat: parseFloat(faker_1.default.address.latitude()),
-      lng: parseFloat(faker_1.default.address.longitude())
-    };
-  }
 
-  return Company;
+  CustomMap.prototype.addUsermarker = function (user) {
+    new google.maps.Marker({
+      map: this.googleMap,
+      position: {
+        lat: user.location.lat,
+        lng: user.location.lng
+      }
+    });
+  };
+
+  CustomMap.prototype.addCompanymarker = function (company) {};
+
+  return CustomMap;
 }();
 
-exports.Company = Company;
-},{"faker":"node_modules/faker/index.js"}],"src/index.ts":[function(require,module,exports) {
+exports.CustomMap = CustomMap;
+},{}],"src/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var User_1 = require("./User");
+var User_1 = require("./User"); // import { Company } from './Company';
 
-var company_1 = require("./company");
+
+var CustomMap_1 = require("./CustomMap"); // const user = new User();
+// const company = new Company();
+
 
 var user = new User_1.User();
-var company = new company_1.Company(); // console.log(company);
-
-var map = new google.maps.Map(document.getElementById('map'), {
-  zoom: 1,
-  center: {
-    lat: 0,
-    lng: 0
-  }
-});
-map.addListener;
-},{"./User":"src/User.ts","./company":"src/company.ts"}],"C:/Users/DCUNI/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var customMap = new CustomMap_1.CustomMap('map');
+customMap.addUsermarker(user);
+},{"./User":"src/User.ts","./CustomMap":"src/CustomMap.ts"}],"C:/Users/DCUNI/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -136989,7 +136986,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51494" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60885" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
