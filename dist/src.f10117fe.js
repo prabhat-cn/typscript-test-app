@@ -136887,7 +136887,9 @@ var faker_1 = __importDefault(require("faker"));
 exports.red = 'red';
 exports.default = 'green';
 
-var User = function () {
+var User =
+/** @class */
+function () {
   function User() {
     this.name = faker_1.default.name.firstName();
     console.log(this.location);
@@ -136920,7 +136922,9 @@ var faker_1 = __importDefault(require("faker"));
 exports.red = 'red';
 exports.default = 'green';
 
-var Company = function () {
+var Company =
+/** @class */
+function () {
   function Company() {
     this.companyName = faker_1.default.company.companyName();
     this.catchPhrase = faker_1.default.company.catchPhrase(); // console.log(this.location);
@@ -136949,13 +136953,14 @@ var company_1 = require("./company");
 var user = new User_1.User();
 var company = new company_1.Company(); // console.log(company);
 
-new google.maps.Map(document.getElementById('map'), {
+var map = new google.maps.Map(document.getElementById('map'), {
   zoom: 1,
   center: {
     lat: 0,
     lng: 0
   }
 });
+map.addListener;
 },{"./User":"src/User.ts","./company":"src/company.ts"}],"C:/Users/DCUNI/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -136984,7 +136989,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58230" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51494" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

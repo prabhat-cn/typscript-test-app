@@ -1,12 +1,12 @@
 import { User, red } from './User';
-import { Company } from './company';
+import { Company } from './Company';
 
 const user = new User();
 const company = new Company();
 
 // console.log(company);
 
-new google.maps.Map(document.getElementById('map'), {
+const map = new google.maps.Map(document.getElementById('map'), {
   zoom: 1,
   center: {
     lat: 0,
