@@ -136887,10 +136887,9 @@ var faker_1 = __importDefault(require("faker"));
 exports.red = 'red';
 exports.default = 'green';
 
-var User =
-/** @class */
-function () {
+var User = function () {
   function User() {
+    this.color = 'red';
     this.name = faker_1.default.name.firstName();
     console.log(this.location);
     this.location = {
@@ -136899,10 +136898,53 @@ function () {
     };
   }
 
+  User.prototype.markerContent = function () {
+    return "User Name: " + this.name;
+  };
+
   return User;
 }();
 
 exports.User = User;
+},{"faker":"node_modules/faker/index.js"}],"src/Company.ts":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Company = exports.red = void 0;
+
+var faker_1 = __importDefault(require("faker"));
+
+exports.red = 'red';
+exports.default = 'green';
+
+var Company = function () {
+  function Company() {
+    this.color = 'red';
+    this.companyName = faker_1.default.company.companyName();
+    this.catchPhrase = faker_1.default.company.catchPhrase(); // console.log(this.location);
+
+    this.location = {
+      lat: parseFloat(faker_1.default.address.latitude()),
+      lng: parseFloat(faker_1.default.address.longitude())
+    };
+  }
+
+  Company.prototype.markerContent = function () {
+    return "\n    <div>\n      <h1>Company Name: " + this.companyName + "</h1>\n      <h3>Catch Phrase: " + this.catchPhrase + "</h3>\n    </div>\n    ";
+  };
+
+  return Company;
+}();
+
+exports.Company = Company;
 },{"faker":"node_modules/faker/index.js"}],"src/CustomMap.ts":[function(require,module,exports) {
 "use strict";
 
@@ -136911,9 +136953,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.CustomMap = void 0;
 
-var CustomMap =
-/** @class */
-function () {
+var CustomMap = function () {
   function CustomMap(divId) {
     this.googleMap = new google.maps.Map(document.getElementById('map'), {
       zoom: 1,
@@ -136925,23 +136965,22 @@ function () {
   } // methods
 
 
-  CustomMap.prototype.addUsermarker = function (user) {
-    new google.maps.Marker({
+  CustomMap.prototype.addMarker = function (mappable) {
+    var _this = this;
+
+    var marker = new google.maps.Marker({
       map: this.googleMap,
       position: {
-        lat: user.location.lat,
-        lng: user.location.lng
+        lat: mappable.location.lat,
+        lng: mappable.location.lng
       }
     });
-  };
-
-  CustomMap.prototype.addCompanymarker = function (company) {
-    new google.maps.Marker({
-      map: this.googleMap,
-      position: {
-        lat: company.location.lat,
-        lng: company.location.lng
-      }
+    marker.addListener('click', function () {
+      var infoWindow = new google.maps.InfoWindow({
+        // content: 'Hi We Are Here!',
+        content: mappable.markerContent()
+      });
+      infoWindow.open(_this.googleMap, marker);
     });
   };
 
@@ -136956,17 +136995,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var User_1 = require("./User"); // import { Company } from './Company';
+var User_1 = require("./User");
 
+var Company_1 = require("./Company");
 
-var CustomMap_1 = require("./CustomMap"); // const user = new User();
-// const company = new Company();
-
+var CustomMap_1 = require("./CustomMap");
 
 var user = new User_1.User();
-var customMap = new CustomMap_1.CustomMap('map');
-customMap.addUsermarker(user);
-},{"./User":"src/User.ts","./CustomMap":"src/CustomMap.ts"}],"C:/Users/DCUNI/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var company = new Company_1.Company();
+var customMap = new CustomMap_1.CustomMap('map'); // customMap.addUsermarker(user);
+
+customMap.addMarker(user);
+customMap.addMarker(company);
+},{"./User":"src/User.ts","./Company":"src/Company.ts","./CustomMap":"src/CustomMap.ts"}],"C:/Users/DCUNI/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -136994,7 +137035,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60885" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52745" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
